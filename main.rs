@@ -17,6 +17,16 @@ fn main() -> Result<(), Box<dyn Error>> {
     if features.is_empty() {
         println!("No valid data found for analysis.");
         return Ok(());
+
+    let regression_result = perform_regression(&features)?;
+    let (_intercept, _slope, r_squared) = regression_result;
+
+    println!(
+        "Regression Coefficients: Intercept = {:.2}, Slope = {:.2}",
+        regression_result.0, regression_result.1
+    );
+
+
     }
     Ok(())
 }
