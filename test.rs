@@ -45,3 +45,18 @@ mod tests {
         assert_eq!(features[0], (70000.0, 1.0));
         assert_eq!(features[1], (65000.0, 0.0));
     }
+
+ #[test]
+    fn test_perform_regression() {
+        let features = vec![
+            (70000.0, 1.0),
+            (65000.0, 0.0),
+            (80000.0, 1.0),
+            (75000.0, 1.0),
+        ];
+
+        let result = perform_regression(&features).unwrap();
+        assert!(result.0 > 0.0);
+        assert!(result.1 > 0.0);
+        assert!(result.2 >= 0.0);
+    }
