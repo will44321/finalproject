@@ -58,7 +58,6 @@ pub fn evaluate_decision_tree(tree: &DecisionNode, features: &[(f64, f64)]) -> f
         .map(|(pred, (_, actual))| (pred - actual).powi(2))
         .sum::<f64>()
         / features.len() as f64;
-
     let rmse = mse.sqrt();
     1.0 - rmse
 }
