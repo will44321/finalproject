@@ -60,3 +60,18 @@ mod tests {
         assert!(result.1 > 0.0);
         assert!(result.2 >= 0.0);
     }
+ #[test]
+    fn test_decision_tree() {
+        let features = vec![
+            (70000.0, 1.0),
+            (65000.0, 0.0),
+            (80000.0, 1.0),
+            (75000.0, 1.0),
+        ];
+
+        let tree = train_decision_tree(&features, 3);
+        let accuracy = evaluate_decision_tree(&tree, &features);
+
+        assert!(accuracy >= 0.0 && accuracy <= 1.0);
+    }
+}
