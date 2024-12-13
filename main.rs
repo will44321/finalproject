@@ -17,6 +17,7 @@ fn main() -> Result<(), Box<dyn Error>> {
     if features.is_empty() {
         println!("No valid data found for analysis.");
         return Ok(());
+    }
 
     let regression_result = perform_regression(&features)?;
     let (_intercept, _slope, r_squared) = regression_result;
@@ -24,9 +25,14 @@ fn main() -> Result<(), Box<dyn Error>> {
     println!(
         "Regression Coefficients: Intercept = {:.2}, Slope = {:.2}",
         regression_result.0, regression_result.1
+
+    println!("Regression R-squared: {:.2}", r_squared);
+
     );
 
+    let tree = train_decision_tree(&features, 3);
+    let accuracy = evaluate_decision_tree(&tree, &features);
+    println!("Decision Tree Accuracy (Predicting Attendance from Success): {:.2}", accuracy);
 
-    }
     Ok(())
 }
